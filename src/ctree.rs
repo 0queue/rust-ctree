@@ -25,8 +25,15 @@ impl CTree {
             let mut ornaments = Vec::new();
             let mut ready = 0;
 
-            for j in 1..w {
-                if ready == 0 && rng.gen() {
+            let prev_branch_os = if i > 2 {
+                branches[i-1].ornaments.clone()
+            } else {
+                Vec::new()
+            };
+
+            for j in 1..(w-1) {
+
+                if ready == 0 && !prev_branch_os.contains(&(j-1)) && rng.gen() {
                     ornaments.push(j);
                     ready = 2;
                 } else if ready > 0 {
