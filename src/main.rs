@@ -14,10 +14,26 @@ fn main() {
 }
 
 fn print_ctree(t: &CTree) {
-    let ocolors = vec![Red, Blue, Yellow];
+    let ocolors = vec![Red, Blue, White];
     let mut rng = rand::thread_rng();
 
+    for _ in 0..((t.max_width-1)/2) {
+       print!(" ");
+    }
+    println!("{}", Plain.bg(Yellow).paint(" "));
+
+    for _ in 0..((t.max_width-3)/2) {
+       print!(" ");
+    }
+    println!("{}", Plain.bg(Yellow).paint("   "));
+
+    for _ in 0..((t.max_width-1)/2) {
+       print!(" ");
+    }
+    println!("{}", Plain.bg(Yellow).paint(" "));
+
     for b in &t.branches {
+        if b.width == 1 { continue; }
         for _ in 0..((t.max_width-b.width)/2) {
             print!(" ");
         }
