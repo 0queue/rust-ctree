@@ -11,10 +11,12 @@ pub struct Branch {
     pub ornaments: Vec<usize>,
 }
 
+pub const MIN_HEIGHT: usize = 8;
+
 
 impl CTree {
     pub fn new(height: usize) -> CTree {
-        let h = if height > 4 { height } else { 4 };
+        let h = if height > MIN_HEIGHT { height } else { MIN_HEIGHT };
         let mut branches: Vec<Branch> = Vec::with_capacity(h);
 
         // simple ornament distribution right now

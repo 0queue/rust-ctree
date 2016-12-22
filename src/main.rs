@@ -1,5 +1,6 @@
 extern crate rand;
 extern crate term_painter;
+extern crate getopts;
 mod ctree;
 
 use ctree::CTree;
@@ -7,9 +8,25 @@ use term_painter::ToStyle;
 use term_painter::Color::*;
 use term_painter::Attr::*;
 use rand::Rng;
+use getopts::Options;
+use std::env;
 
 fn main() {
-    let t = CTree::new(10);
+    let args: Vec<String> = env::args().collect();
+    let mut opts = Options::new();
+    opts.optopt("h", "height", "The height of a tree, larger than 8", "HEIGHT");
+
+    let matches = match opts.parse(&args[1..]) {
+        Ok(m) => { m },
+        Err(f) => { println!("{}", f.to_string()); return; }
+    };
+
+    let height = match matches.opt_str("h") {
+        Some(s) => s.parse().unwrap(),
+        None => ctree::MIN_HEIGHT
+    };
+
+    let t = CTree::new(height);
     print_ctree(&t);
 }
 
