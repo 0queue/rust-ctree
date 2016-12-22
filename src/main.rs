@@ -31,23 +31,23 @@ fn main() {
 }
 
 fn print_ctree(t: &CTree) {
-    let ocolors = vec![Red, Blue, White];
+    let ocolors = vec![Red, Blue, Yellow];
     let mut rng = rand::thread_rng();
 
     for _ in 0..((t.max_width-1)/2) {
        print!(" ");
     }
-    println!("{}", Plain.bg(Yellow).paint(" "));
+    println!("{}", Plain.bg(White).paint(" "));
 
     for _ in 0..((t.max_width-3)/2) {
        print!(" ");
     }
-    println!("{}", Plain.bg(Yellow).paint("   "));
+    println!("{}", Plain.bg(White).paint("   "));
 
     for _ in 0..((t.max_width-1)/2) {
        print!(" ");
     }
-    println!("{}", Plain.bg(Yellow).paint(" "));
+    println!("{}", Plain.bg(White).paint(" "));
 
     for b in &t.branches {
         if b.width == 1 { continue; }
@@ -74,7 +74,7 @@ fn print_ctree(t: &CTree) {
     }
 
     // print trunk
-    for _ in 0..2 {
+    for _ in 0..((t.max_width+1)/10) {
         for _ in 0..((t.max_width-3)/2) {
             print!(" ");
         }
