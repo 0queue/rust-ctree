@@ -39,4 +39,13 @@ fn print_ctree(t: &CTree) {
 
         println!("");
     }
+
+    // print trunk
+    for _ in 0..2 {
+        for _ in 0..((t.max_width-3)/2) {
+            print!(" ");
+        }
+
+        println!("{}", Plain.bg(Red).paint("   "));
+    }
 }
